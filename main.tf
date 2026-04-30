@@ -69,12 +69,11 @@ resource "aws_instance" "mon_serveur" {
   vpc_security_group_ids = [aws_security_group.mon_sg.id]
   key_name = aws_key_pair.ma_cle.key_name
   user_data = <<-EOF
-  #!/bin/bash
-  apt-get update -y
-  apt-get install -y docker.io
-  systemctl start docker
-  docker run -d -p 80:10000 ginoess/mon-pipeline:latest
-EOF
+    #!/bin/bash
+    apt-get update -y
+    apt-get install -y docker.io
+    systemctl start docker
+  EOF
   tags = {
     Name = "mon-pipeline-server"
   }
